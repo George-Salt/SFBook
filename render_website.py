@@ -16,7 +16,8 @@ def render_page(books, name, pages_quantity):
 
     rendered_page = template.render(
         books = books,
-        pages_num = pages_quantity
+        pages_num = pages_quantity,
+        index = name
     )
     
     if name == 0:

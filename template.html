@@ -7,19 +7,41 @@
     <title>"WeBook" - онлайн библиотека.</title>
   </head>
   <body>
-    <nav aria-label="Page navigation example">
+    <hr style="border-color: white">
+    <nav aria-label="Page navigation example" class="mx-auto" style="width: 1100px;">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="../index.html">Предыдущая</a></li>
+        {% if index < 1 %}
+          <li class="page-item disabled"><span class="page-link">Предыдущая</span></li>
+        {% else %}
+          {% if index == 1 %}
+            <li class="page-item"><a class="page-link" href="../index.html">Предыдущая</a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="../index{{ index - 1 }}.html">Предыдущая</a></li>
+          {% endif %}
+        {% endif %}
         {% for page in range(pages_num) %}
           {% if page == 0 %}
-            <li class="page-item"><a class="page-link" href="../index.html">1</a></li>
+            {% if page == index %}
+              <li class="page-item  active"><a class="page-link" href="../index.html">1 <span class="sr-only">(current)</span></a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="../index.html">1</a></li>
+            {% endif %}
           {% else %}
-            <li class="page-item"><a class="page-link" href="../index{{ page }}.html">{{ page + 1 }}</a></li>
+            {% if page == index %}
+              <li class="page-item  active"><a class="page-link" href="../index{{ page }}.html">{{ page + 1 }} <span class="sr-only">(current)</span></a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="../index{{ page }}.html">{{ page + 1 }}</a></li>
+            {% endif %}
           {% endif %}
         {% endfor %}
-        <li class="page-item"><a class="page-link" href="../index.html">Следующая</a></li>
+        {% if index == pages_num - 1 %}
+          <li class="page-item disabled"><span class="page-link">Следующая</span></li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="../index{{ index + 1 }}.html">Следующая</a></li>
+        {% endif %}
       </ul>
     </nav>
+
     {% for pair in books %}
       <div class="container">
         <div class="row">
@@ -44,6 +66,8 @@
         </div>
       </div>
     {% endfor %}
+    <hr/>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
