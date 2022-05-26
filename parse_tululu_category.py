@@ -22,6 +22,7 @@ def parse_book_page(book_url):
 
     img_selector = "div.bookimage img"
     img_url = urljoin(book_url, page_code.select_one(img_selector)["src"])
+    id_and_ext = urlsplit(img_url).path.split("/")[-1]
 
     genre_tag_selector = "span.d_book a"
     book_genre_tags = page_code.select(genre_tag_selector)
@@ -35,17 +36,18 @@ def parse_book_page(book_url):
         "name": book_name.strip(),
         "author": author_name.strip(),
         "img_url": img_url,
+        "img_id": id_and_ext,
         "genre": book_genres,
         "comments": comments_texts
     }
     return book_parameters
 
 
-def download_image(img_url, folder):
-    response = requests.get(img_url)
+def download_image(id, folder):
+    response = requests.get(id)
     response.raise_for_status()
 
-    filename = urlsplit(img_url).path.split("/")[-1]
+    filename = urlsplit(id).path.split("/")[-1]
     filepath = os.path.join(folder, filename)
     with open(unquote(filepath), "wb") as file:
         file.write(response.content)
@@ -130,7 +132,6 @@ if __name__ == "__main__":
         args.end_page
     ):
         params = {"id": book_url.split("https://tululu.org/b")[1].split("/")[0]}
-        print(book_url)
 
         book_page = parse_book_page(book_url)
         books_parameters.append(book_page)

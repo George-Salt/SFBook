@@ -20,12 +20,8 @@ def render_page(books, name, pages_quantity):
         index = name
     )
     
-    if name == 0:
-        with open("./pages/index.html", "w", encoding="utf8") as file:
-            file.write(rendered_page)
-    else:
-        with open(f"./pages/index{name}.html", "w", encoding="utf8") as file:
-            file.write(rendered_page)
+    with open(f"./pages/index{name}.html", "w", encoding="utf8") as file:
+        file.write(rendered_page)
 
 
 def on_reload():
@@ -45,9 +41,9 @@ if __name__ == "__main__":
 
     pages_num = math.ceil(len(books) / 10)
 
-    for index, page in enumerate(books_by_pages):
+    for index, page in enumerate(books_by_pages, 1):
         render_page(page, index, pages_num)
 
     server = Server()
     server.watch("./template.html", on_reload)
-    server.serve(root="./pages")
+    server.serve(root=".")
