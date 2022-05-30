@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     pages_num = math.ceil(len(books) / 10)
 
-    for index, page in enumerate(books_by_pages, 1):
+    for index, page in enumerate(books_by_pages):
         render_page(page, index, pages_num)
 
     server = Server()
