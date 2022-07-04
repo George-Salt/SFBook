@@ -33,13 +33,14 @@ def on_reload():
 if __name__ == "__main__":
     os.makedirs("./pages", exist_ok=True)
 
-    with open("./media/books.json", "r", encoding="utf8") as file:
-        books_json = file.read()
+    books_on_page = 10
 
-    books = json.loads(books_json)
+    with open("./media/books.json", "r", encoding="utf8") as file:
+        books = json.load(file)
+
     books_by_pages = list(chunked(list(chunked(books, 2)), 5))
 
-    pages_num = math.ceil(len(books) / 10)
+    pages_num = math.ceil(len(books) / books_on_page)
 
     for index, page in enumerate(books_by_pages):
         render_page(page, index, pages_num)

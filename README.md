@@ -6,8 +6,8 @@
 
 ## Установка
 
-Сделайте fork [репозитория](https://github.com/George-Salt/SFBook/) и сохраните себе на компьютер.
-Python3 должен быть уже установлен. Если нет, то вот [ссылка](https://docs.microsoft.com/ru-ru/windows/python/beginners#install-python).
+Сделайте fork [репозитория с библиотекой](https://github.com/George-Salt/SFBook/) и сохраните себе на компьютер.
+Python3 должен быть уже установлен. Если вас его нет, то следуйте рекомендациям [статьи по установке Python для Windows](https://docs.microsoft.com/ru-ru/windows/python/beginners#install-python).
 Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
 
 ```python
@@ -26,7 +26,7 @@ python render_website.py
 
 ![Все работает](media/images/worked.png)
 
-Протестировать запущенный сайт можно [здесь](http://127.0.0.1:5500/).
+Протестировать запущенный сайт можно на сайте [127.0.0.1:5500](http://127.0.0.1:5500/).
 
 ## Цель проекта
 
