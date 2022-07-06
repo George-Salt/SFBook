@@ -24,7 +24,7 @@ def render_page(books, name, pages_quantity):
         file.write(rendered_page)
 
 
-def on_reload():
+def on_reload(books_by_pages, pages_num):
     for index, page in enumerate(books_by_pages):
         render_page(page, index, pages_num)
     print("Site rebuilt")
@@ -34,11 +34,13 @@ if __name__ == "__main__":
     os.makedirs("./pages", exist_ok=True)
 
     books_on_page = 10
+    pair = 2
+    pairs_on_page = 5
 
     with open("./media/books.json", "r", encoding="utf8") as file:
         books = json.load(file)
 
-    books_by_pages = list(chunked(list(chunked(books, 2)), 5))
+    books_by_pages = list(chunked(list(chunked(books, pair)), pairs_on_page))
 
     pages_num = math.ceil(len(books) / books_on_page)
 
@@ -46,5 +48,5 @@ if __name__ == "__main__":
         render_page(page, index, pages_num)
 
     server = Server()
-    server.watch("./template.html", on_reload)
+    server.watch("./template.html", on_reload(books_by_pages, pages_num))
     server.serve(root=".")

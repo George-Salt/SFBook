@@ -2,7 +2,7 @@
 
 Программа загружает предустановленные книги из папки books/, картинки к ним из папки images/ на [сайт](https://george-salt.github.io/SFBook/) в файле [render_website](https://github.com/George-Salt/SFBook/blob/main/render_website.py).
 
-![Скриншот сайта](media/images/banner.png)
+![Скриншот сайта](media/images/screenshot.png)
 
 ## Установка
 
