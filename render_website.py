@@ -15,11 +15,11 @@ def render_page(books, name, pages_quantity):
     template = env.get_template("./template.html")
 
     rendered_page = template.render(
-        books = books,
-        pages_num = pages_quantity,
-        index = name
+        books=books,
+        pages_num=pages_quantity,
+        index=name
     )
-    
+
     with open(f"./pages/index{name}.html", "w", encoding="utf8") as file:
         file.write(rendered_page)
 
